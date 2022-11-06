@@ -1,10 +1,17 @@
 import express, { Request, Response } from 'express';
+import { pool } from './db_config';
 
 const app = express();
 const PORT = 5000;
-app.get('/', (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
   res.send('Test for start server...');
 });
-app.listen(PORT, () => {
-  return console.log(`server is listening on ${PORT}`);
-});
+
+const start = async () => {
+  pool.on("connect", () => {});
+  app.listen(PORT, () => {
+    console.log(`app has startd on ${PORT} port`);
+  });
+};
+
+start();
