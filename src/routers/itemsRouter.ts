@@ -1,8 +1,10 @@
 import express, { Request, Response } from "express";
-import itemsController from "../controllers/itemsController";
+import ItemsController from "../controllers/itemsController";
 
 const itemsRouter = express.Router();
 
-itemsRouter.get(`/items`, itemsController.onGetItems)
+itemsRouter.get(`/items`, ItemsController.onGetItems)
+itemsRouter.get(`/items/:id`, ItemsController.onGetItemById)
+itemsRouter.post(`/items`, ItemsController.onPostItem)
 
 export default itemsRouter
