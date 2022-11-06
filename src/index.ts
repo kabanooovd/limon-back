@@ -1,11 +1,15 @@
 import express, { Request, Response } from 'express';
+import { ROOT_ROUTE } from './config';
 import { pool } from './db_config';
+import itemsRouter from './routers/itemsRouter';
+
+const PORT = 5000;
 
 const app = express();
-const PORT = 5000;
-app.get('/', async (req: Request, res: Response) => {
-  res.send('Test for start server...');
-});
+
+app.use(express.json());
+
+app.use(`${ROOT_ROUTE}/`, itemsRouter);
 
 const start = async () => {
   pool.on("connect", () => {});
