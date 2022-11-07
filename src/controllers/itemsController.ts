@@ -9,8 +9,10 @@ class ItemsController {
   }
 
   async onPostItem(req: Request, res: Response) {
-    // console.log('==> ', req.body) TODO
-    // console.log('==> ', req.file) TODO
+
+    console.log('==> body ', req.body) // TODO
+    console.log('==> files ', req.file) // TODO
+
     const dto: any = req.body
     const response = await ItemsService.onAddItem(dto)
     res.status(201).json(response)
