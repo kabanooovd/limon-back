@@ -1,6 +1,5 @@
 import { Request, Response } from "express"
 import ItemsService from "../services/itemsService"
-import { IItem } from "../types"
 
 class ItemsController {
   async onGetItems(req: Request, res: Response) {
@@ -10,6 +9,8 @@ class ItemsController {
   }
 
   async onPostItem(req: Request, res: Response) {
+    // console.log('==> ', req.body) TODO
+    // console.log('==> ', req.file) TODO
     const dto: any = req.body
     const response = await ItemsService.onAddItem(dto)
     res.status(201).json(response)
