@@ -32,7 +32,7 @@ class Queries {
   }
 
   async onRemoveAll() {
-    return await pool.query(`DELETE FROM ${items} *`)
+    return await pool.query(`DELETE FROM ${items}`)
   }
 
 }

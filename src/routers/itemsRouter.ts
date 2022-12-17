@@ -13,8 +13,8 @@ const { items } = TABLES
 itemsRouter.get(`/${items}`, ItemsController.onGetItems)
 itemsRouter.get(`/${items}/:id`, ItemsController.onGetItemById)
 itemsRouter.post(`/${items}`, upload.single('item_image'), ItemsController.onPostItem)
-itemsRouter.delete(`/${items}/:id`, ItemsController.onRemoveItemById)
 itemsRouter.delete(`/${items}/all`, ItemsController.onRemoveAllItems)
+itemsRouter.delete(`/${items}/:id`, ItemsController.onRemoveItemById)
 
 export default itemsRouter
 

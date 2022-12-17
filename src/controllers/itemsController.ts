@@ -10,7 +10,10 @@ class ItemsController {
 
   async onPostItem(req: Request, res: Response) {
 
-    const filename: string | null = req.file?.filename ? Date.now() + req.file.filename : null;
+    // const filename: string | null = req.file?.filename ? Date.now() + req.file.filename : null;
+    const filename: string | null = req.file ? req.file.filename : null;
+
+    console.log("==> ", filename)
 
     const dto: any = req.body
     const response = await ItemsService.onAddItem({...dto, item_image: filename})
