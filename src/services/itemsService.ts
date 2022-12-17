@@ -1,5 +1,7 @@
 import ItemsRepo from "../repo/itemsRepo"
 import { IItem } from "../types"
+import { onRemoveAllStaticFiles } from "../utils/onRemoveAllFiles"
+import { onRemoveFileByName } from "../utils/onRemoveFileByName"
 
 class ItemsService {
   async onGetItems() {
@@ -36,6 +38,7 @@ class ItemsService {
       if (!foundItem) {
         return null
       } 
+      onRemoveFileByName(foundItem.item_image)
       return await ItemsRepo.onRemoveItemById(id) 
     } catch(error: any) {
       console.error(error.message)
@@ -44,6 +47,7 @@ class ItemsService {
 
   async onRemoveAll() {
     try {
+      onRemoveAllStaticFiles()
       return await ItemsRepo.onRemoveAll()
     } catch(error: any) {
       console.error(error.message)
