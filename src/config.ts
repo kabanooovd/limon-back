@@ -8,6 +8,8 @@ export const dbConnectionConfig = {
 
 export const ROOT_ROUTE = `/api`;
 
+export const FILE_STORAGE_DIR_NAME = "static";
+
 export const TABLES = {
   items: 'items'
 }

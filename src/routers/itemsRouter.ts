@@ -4,7 +4,7 @@ import multer from "multer"
 import { storage } from "../utils/onMulterStorage";
 import { TABLES } from "../config";
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage })
 
 const itemsRouter = express.Router();
 
