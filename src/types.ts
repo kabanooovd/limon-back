@@ -3,6 +3,6 @@ export interface IItem {
   price: number, 
   category: string, 
   rating: number, 
-  item_image: string, 
+  item_image: string | null, 
   item_description: string,
 }

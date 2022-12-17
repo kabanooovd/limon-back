@@ -1,5 +1,8 @@
+import { TABLES } from "../config";
 import { pool } from "../db_config";
 import { IItem } from "../types";
+
+const { items } = TABLES
 
 class Queries {
   async getTableData(tableName: string) {
@@ -21,7 +24,15 @@ class Queries {
   }
 
   async getItemById(id: string) {
-    return await pool.query(`SELECT * FROM items WHERE id = '${ id }'`)
+    return await pool.query(`SELECT * FROM ${items} WHERE id = '${ id }'`)
+  }
+
+  async onRemoveItemById(id: string) {
+    return await pool.query(`DELETE FROM ${items} WHERE id = '${id}'`)
+  }
+
+  async onRemoveAll() {
+    return await pool.query(`DELETE FROM ${items} *`)
   }
 
 }

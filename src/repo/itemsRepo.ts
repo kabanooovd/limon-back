@@ -26,8 +26,24 @@ class ItemsRepo {
 
   async onGetItemById(id: string) {
     try {
-      const {rows} = await queries.getItemById(id)
+      const { rows } = await queries.getItemById(id)
       return rows[0]
+    } catch(error: any) {
+      console.error(error.message)
+    }
+  }
+
+  async onRemoveItemById(id: string) {
+    try {
+      return await queries.onRemoveItemById(id)
+    } catch(error: any) {
+      console.error(error.message)
+    }
+  }
+
+  async onRemoveAll() {
+    try {
+      return await queries.onRemoveAll()
     } catch(error: any) {
       console.error(error.message)
     }

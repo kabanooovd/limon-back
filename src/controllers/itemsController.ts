@@ -10,11 +10,10 @@ class ItemsController {
 
   async onPostItem(req: Request, res: Response) {
 
-    console.log('==> body ', req.body) // TODO
-    console.log('==> files ', req.file) // TODO
+    const filename: string | null = req.file?.filename ? Date.now() + req.file.filename : null;
 
     const dto: any = req.body
-    const response = await ItemsService.onAddItem(dto)
+    const response = await ItemsService.onAddItem({...dto, item_image: filename})
     res.status(201).json(response)
     return
   }
@@ -22,9 +21,29 @@ class ItemsController {
   async onGetItemById(req: Request, res: Response) {
     const { id } = req.params
     const response = await ItemsService.onGetItemById(id)
+    if (!response) {
+      return res.status(404).json(response)
+    }
     res.json(response)
     return
   }
+
+  async onRemoveItemById(req: Request, res: Response) {
+    const { id } = req.params
+    const response = await ItemsService.onRemoveItemById(id)
+    if (!response) {
+      return res.status(404).json(response)
+    }
+    res.status(204).json()
+    return
+  }
+
+  async onRemoveAllItems(req: Request, res: Response) {
+    await ItemsService.onRemoveAll()
+    res.status(204).json()
+    return
+  }
+
 }
 
 export default new ItemsController()

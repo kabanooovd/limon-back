@@ -20,7 +20,31 @@ class ItemsService {
 
   async onGetItemById(id: string) {
     try {
-      return await ItemsRepo.onGetItemById(id) 
+      const response =  await ItemsRepo.onGetItemById(id) 
+      if (!response) {
+        return null
+      }
+      return response
+    } catch(error: any) {
+      console.error(error.message)
+    }
+  }
+
+  async onRemoveItemById(id: string) {
+    try {
+      const foundItem = await this.onGetItemById(id)
+      if (!foundItem) {
+        return null
+      } 
+      return await ItemsRepo.onRemoveItemById(id) 
+    } catch(error: any) {
+      console.error(error.message)
+    }
+  }
+
+  async onRemoveAll() {
+    try {
+      return await ItemsRepo.onRemoveAll()
     } catch(error: any) {
       console.error(error.message)
     }
