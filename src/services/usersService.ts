@@ -17,7 +17,7 @@ class UsersService {
   async onCreateUser(dto: IUser) {
     try {
       const foundUser = await UsersRepo.onGetUserByEmail(dto.email)
-      if (!foundUser) {
+      if (foundUser?.rows.length) {
         return null
       }
       const newUserId = uuid.v4()

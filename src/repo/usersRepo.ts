@@ -26,9 +26,6 @@ class UsersRepo {
   async onGetUserByEmail(userEmail: string) {
     try {
       const foundUser = await queries.onGetEntityByParam("email", userEmail, users)
-      if (foundUser.rows.length) {
-        return null
-      }
       return foundUser
     } catch(error: any) {
       console.error(error.message)

@@ -12,6 +12,10 @@ class AuthRepo {
       console.error(error.message)
     }
   }
+
+  async onGetTokensByParam(paramKey: string, paramValue: string) {
+    return await queries.onGetEntityByParam(paramKey, paramValue, tokens)
+  }
 }
 
 export default new AuthRepo()
