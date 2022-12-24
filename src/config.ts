@@ -6,6 +6,9 @@ export const dbConnectionConfig = {
   port: Number(5432),
 }
 
+export const JWT_ACCESS_SECRET_KEY = "limon_access_secret_key";
+export const JWT_REFRESH_SECRET_KEY = "limon_refresh_secret_key";
+
 export const BASE_HOST = "http://localhost:5000";
 
 export const ROOT_ROUTE = `/api`;
@@ -24,4 +27,5 @@ export const ROUTES = {
   CREATE_USER: "registration",
   LOGIN: "login",
   LOGOUT: "logout",
+  UESRS: "users",
 }
