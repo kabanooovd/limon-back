@@ -1,6 +1,6 @@
 import { TABLES } from "../config";
 import { pool } from "../db_config";
-import { IItem } from "../types";
+import { IItem, IUser, TUserRole } from "../types";
 
 const { items } = TABLES
 
@@ -8,6 +8,10 @@ class Queries {
 
   async getTableData(tableName: string) {
     return await pool.query(`SELECT * FROM ${tableName}`);
+  }
+
+  async onGetEntityByParam(paramKey: string, paramValue: string, tableName: string) {
+    return await pool.query(`SELECT * FROM ${tableName} WHERE ${paramKey} = '${paramValue}';`)
   }
 
   async addItem(dto: IItem, tableName: string, newItemId: string) {
@@ -34,6 +38,34 @@ class Queries {
 
   async onRemoveAll() {
     return await pool.query(`DELETE FROM ${items}`)
+  }
+
+
+
+
+  async registrateUser(dto: IUser, tableName: string, newUserId: string, userRole: TUserRole) {
+    const {email, userLogin, userPassword} = dto;
+    return await pool.query(`INSERT INTO ${tableName} (id, email, userLogin, userPassword, userRole)
+      VALUES (
+        '${newUserId}',
+        '${email}',
+        '${userLogin}',
+        '${userPassword}',
+        '${userRole}'
+      );
+    `)
+  }
+
+  async onSetTokens(tokens: { accessToken: string, refreshToken: string }, userId: string, id: string) {
+    const { accessToken, refreshToken } = tokens;
+    return await pool.query(`insert into tokens (id, userId, accessToken, refreshToken) 
+      values (
+        '${id}', 
+        '${userId}', 
+        '${accessToken}', 
+        '${refreshToken}'
+      );`
+    )
   }
 
 }

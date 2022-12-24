@@ -7,7 +7,9 @@ export const dbConnectionConfig = {
 }
 
 export const JWT_ACCESS_SECRET_KEY = "limon_access_secret_key";
+export const JWT_ACCESS_TOKEN_LIFETIME = "30m";
 export const JWT_REFRESH_SECRET_KEY = "limon_refresh_secret_key";
+export const JWT_REFRESH_TOKEN_LIFETIME = "30d";
 
 export const BASE_HOST = "http://localhost:5000";
 
@@ -20,6 +22,7 @@ export const FILE_STORAGE_DIR_NAME = "static";
 export const TABLES = {
   items: 'items',
   users: 'users',
+  tokens: 'tokens',
 }
 
 export const ROUTES = {
