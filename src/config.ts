@@ -17,3 +17,11 @@ export const FILE_STORAGE_DIR_NAME = "static";
 export const TABLES = {
   items: 'items'
 }
+
+export const ROUTES = {
+  ITEMS: "items",
+  AUTHORIZATION: "auth",
+  CREATE_USER: "registration",
+  LOGIN: "login",
+  LOGOUT: "logout",
+}

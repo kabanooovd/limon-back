@@ -1,14 +1,14 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import ItemsController from "../controllers/itemsController";
 import multer from "multer"
 import { storage } from "../utils/onMulterStorage";
-import { TABLES } from "../config";
+import { ROUTES } from "../config";
 
 const upload = multer({ storage })
 
 const itemsRouter = express.Router();
 
-const { items } = TABLES
+const { ITEMS } = ROUTES
 
 /**
  * @swagger
@@ -19,7 +19,7 @@ const { items } = TABLES
  *      200:
  *        description: A successful response
  */
-itemsRouter.get(`/${items}`, ItemsController.onGetItems)
+itemsRouter.get(`/${ITEMS}`, ItemsController.onGetItems)
 
 /**
  * @swagger
@@ -38,7 +38,7 @@ itemsRouter.get(`/${items}`, ItemsController.onGetItems)
  *      200:
  *        description: Item found successfully
  */
-itemsRouter.get(`/${items}/:id`, ItemsController.onGetItemById)
+itemsRouter.get(`/${ITEMS}/:id`, ItemsController.onGetItemById)
 
 /**
  * @swagger
@@ -79,9 +79,9 @@ itemsRouter.get(`/${items}/:id`, ItemsController.onGetItemById)
  *      201:
  *        description: Item successfully created
  */
-itemsRouter.post(`/${items}`, upload.single('item_image'), ItemsController.onPostItem)
+itemsRouter.post(`/${ITEMS}`, upload.single('item_image'), ItemsController.onPostItem)
 
-itemsRouter.delete(`/${items}/all`, ItemsController.onRemoveAllItems)
+itemsRouter.delete(`/${ITEMS}/all`, ItemsController.onRemoveAllItems)
 
 /**
  * @swagger
@@ -100,7 +100,7 @@ itemsRouter.delete(`/${items}/all`, ItemsController.onRemoveAllItems)
  *      204:
  *        description: A successful response
  */
-itemsRouter.delete(`/${items}/:id`, ItemsController.onRemoveItemById)
+itemsRouter.delete(`/${ITEMS}/:id`, ItemsController.onRemoveItemById)
 
 export default itemsRouter
 
