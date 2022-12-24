@@ -18,7 +18,8 @@ export const SWAGGER_ROOT_ROUTE = `/api-docs`;
 export const FILE_STORAGE_DIR_NAME = "static";
 
 export const TABLES = {
-  items: 'items'
+  items: 'items',
+  users: 'users',
 }
 
 export const ROUTES = {

@@ -5,6 +5,7 @@ import { IItem } from "../types";
 const { items } = TABLES
 
 class Queries {
+
   async getTableData(tableName: string) {
     return await pool.query(`SELECT * FROM ${tableName}`);
   }
