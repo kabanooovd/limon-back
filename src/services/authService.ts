@@ -40,7 +40,6 @@ class AuthService {
   }
 
   async onRefreshToken(refreshToken: string) {
-    // const foundTokens = await AuthRepo.onGetTokensByParam("userId", foundUser.rows[0].id)
     try {
       const data = this.onVerifyToken(refreshToken, "refresh") as JwtPayload
       const tokensPayload = {
@@ -52,8 +51,7 @@ class AuthService {
       const foundTokens = await AuthRepo.onGetTokensByParam("userId", data.id)
       const tokens = await this.onGenerateTokens(tokensPayload)
       if (foundTokens && tokens) {
-        const x = await AuthRepo.onRefreshToken(tokens, data.id)
-        console.log("==> ", x) 
+        await AuthRepo.onRefreshToken(tokens, data.id)
         return tokens
       }
       return null

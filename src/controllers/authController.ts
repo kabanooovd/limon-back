@@ -27,7 +27,6 @@ class AuthController {
   }
 
   async onLogoutUser(req: Request, res: Response) {
-    // const items = await ItemsService.onGetItems()
     res.json({data: "test logout"})
     return
   }
