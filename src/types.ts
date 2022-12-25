@@ -1,3 +1,5 @@
+// import { JwtPayload } from "jsonwebtoken";
+
 export interface IItem {
   item_name: string;
   price: number;
@@ -11,6 +13,13 @@ export interface IUser {
   email: string;
   userLogin: string;
   userPassword: string;
+}
+
+export interface JwtPayload {
+  id: string;
+  userLogin: string;
+  email: string;
+  role: string;
 }
 
 export type TUserRole = "USER" | "MANAGER" | "ADMIN";

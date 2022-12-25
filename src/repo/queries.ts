@@ -56,6 +56,7 @@ class Queries {
     `)
   }
 
+
   async onSetTokens(tokens: { accessToken: string, refreshToken: string }, userId: string, id: string) {
     const { accessToken, refreshToken } = tokens;
     return await pool.query(`insert into tokens (id, userId, accessToken, refreshToken) 
@@ -66,6 +67,11 @@ class Queries {
         '${refreshToken}'
       );`
     )
+  }
+
+  async onRefreshTokens(tokens: { accessToken: string, refreshToken: string }, userId: string) {
+    const { accessToken, refreshToken } = tokens;
+    return await pool.query(`UPDATE tokens SET refreshToken = '${refreshToken}', accessToken = '${accessToken}' WHERE userId = '${userId}'`)
   }
 
 }

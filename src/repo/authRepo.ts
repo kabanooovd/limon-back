@@ -14,7 +14,23 @@ class AuthRepo {
   }
 
   async onGetTokensByParam(paramKey: string, paramValue: string) {
-    return await queries.onGetEntityByParam(paramKey, paramValue, tokens)
+    try {
+      const response =  await queries.onGetEntityByParam(paramKey, paramValue, tokens)
+      if (response.rows.length) {
+        return response.rows[0]
+      }
+      return null
+    } catch(error: any) {
+      console.error(error.message)
+    }
+  }
+
+  async onRefreshToken(tokens: { accessToken: string, refreshToken: string }, userId: string) {
+    try {
+      return await queries.onRefreshTokens(tokens, userId) 
+    } catch(error: any) {
+      console.error(error.message)
+    }
   }
 }
 

@@ -31,6 +31,21 @@ class AuthController {
     res.json({data: "test logout"})
     return
   }
+
+  async onRefreshToken(req: Request, res: Response) {
+    const refreshToken = req.headers.authorization?.split(" ")[1]
+    if (refreshToken) {
+      const response = await AuthService.onRefreshToken(refreshToken)
+      if (!response) {
+        res.status(401).json({data: "Authorisation is failed"})
+        return
+      }
+      res.json({data: response})
+      return
+    }
+    res.status(403).json({data: "Authorisation is requied"})
+    return
+  }
 }
 
 export default new AuthController()

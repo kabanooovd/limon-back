@@ -32,4 +32,5 @@ export const ROUTES = {
   LOGIN: "login",
   LOGOUT: "logout",
   UESRS: "users",
+  REFRESH: "refresh",
 }
