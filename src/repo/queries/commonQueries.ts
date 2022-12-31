@@ -16,7 +16,7 @@ class CommonQueries {
     return await pool.query(`SELECT * FROM ${tableName} WHERE ${paramKey} = '${paramValue}';`)
   }
 
-  async onRemoveItemById(id: string, tableName: string) {
+  async onRemoveDataById(id: string, tableName: string) {
     return await pool.query(`DELETE FROM ${tableName} WHERE id = '${id}'`)
   }
 

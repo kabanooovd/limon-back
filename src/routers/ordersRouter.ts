@@ -9,6 +9,8 @@ const { ORDERS } = ROUTES
 ordersRouter.post(`/${ORDERS}`, OrdersController.onPostNewCeclaration)
 ordersRouter.get(`/${ORDERS}`, OrdersController.onGetAllDeclarations)
 ordersRouter.get(`/${ORDERS}/:id`, OrdersController.onGetAllDeclarationById)
+ordersRouter.delete(`/${ORDERS}/all`, OrdersController.onRemoveAllDeclarations)
+ordersRouter.delete(`/${ORDERS}/:id`, OrdersController.onRemoveDeclarationById)
 
 
 

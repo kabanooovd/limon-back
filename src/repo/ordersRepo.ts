@@ -26,6 +26,10 @@ class OrdersRepo {
     const { rows } = await commonQueries.getDataById(id, orders)
     return rows[0]
   }
+
+  async onRemoveOrderById(id: string) {
+    return await commonQueries.onRemoveDataById(id, orders)
+  }
 }
 
 export default new OrdersRepo()

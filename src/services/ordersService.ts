@@ -27,6 +27,14 @@ class OrdersService {
       console.error(error.message)
     }
   }
+
+  async onRemoveOrderById(id: string) {
+    try {
+      return await ordersRepo.onRemoveOrderById(id)
+    } catch(error: any) {
+      console.error(error.message)
+    }
+  }
 }
 
 export default new OrdersService()

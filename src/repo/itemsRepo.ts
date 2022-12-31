@@ -36,7 +36,7 @@ class ItemsRepo {
 
   async onRemoveItemById(id: string) {
     try {
-      return await commonQueries.onRemoveItemById(id, items)
+      return await commonQueries.onRemoveDataById(id, items)
     } catch(error: any) {
       console.error(error.message)
     }
