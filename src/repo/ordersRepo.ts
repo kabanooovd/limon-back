@@ -22,6 +22,11 @@ class OrdersRepo {
       console.error(error.message)
     }
   }
+
+  async onGetOrderById(id: string) {
+    const { rows } = await queries.getItemById(id, orders)
+    return rows[0]
+  }
 }
 
 export default new OrdersRepo()

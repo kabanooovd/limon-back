@@ -26,7 +26,7 @@ class ItemsRepo {
 
   async onGetItemById(id: string) {
     try {
-      const { rows } = await queries.getItemById(id)
+      const { rows } = await queries.getItemById(id, items)
       return rows[0]
     } catch(error: any) {
       console.error(error.message)

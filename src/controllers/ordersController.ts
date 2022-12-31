@@ -20,6 +20,16 @@ class OrdersController {
     res.json(orders)
     return
   }
+
+  async onGetAllDeclarationById(req: Request, res: Response) {
+    const { id } = req.params
+    const response = await OrdersService.onGetOrderById(id)
+    if (!response) {
+      return res.status(404).json(response)
+    }
+    res.json(response)
+    return
+  }
 }
 
 export default new OrdersController()

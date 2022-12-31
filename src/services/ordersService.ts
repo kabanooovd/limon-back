@@ -21,6 +21,14 @@ class OrdersService {
       console.error(error.message)
     }
   }
+
+  async onGetOrderById(id: string) {
+    try {
+      return await ordersRepo.onGetOrderById(id)
+    } catch(error: any) {
+      console.error(error.message)
+    }
+  }
 }
 
 export default new OrdersService()

@@ -10,6 +10,10 @@ class Queries {
     return await pool.query(`SELECT * FROM ${tableName}`);
   }
 
+  async getItemById(id: string, tableName: string) {
+    return await pool.query(`SELECT * FROM ${tableName} WHERE id = '${ id }'`)
+  }
+
   async onGetEntityByParam(paramKey: string, paramValue: string, tableName: string) {
     return await pool.query(`SELECT * FROM ${tableName} WHERE ${paramKey} = '${paramValue}';`)
   }
@@ -26,10 +30,6 @@ class Queries {
         '${item_image}', 
         '${item_description}'
         );`);
-  }
-
-  async getItemById(id: string) {
-    return await pool.query(`SELECT * FROM ${items} WHERE id = '${ id }'`)
   }
 
   async onRemoveItemById(id: string) {
