@@ -1,13 +1,14 @@
 import { TABLES } from "../config"
 import { IItem } from "../types";
 import * as uuid from 'uuid';
-import queries from "./queries"
+import commonQueries from "./queries/commonQueries";
+import itemsQueries from "./queries/itemsQueries";
 
 const { items } = TABLES
 class ItemsRepo {
   async onGetItemsData() {
     try {
-      const { rows, rowCount } = await queries.getTableData(items)
+      const { rows, rowCount } = await commonQueries.getTableData(items)
       return { quantity: rowCount, tableData: rows };
     } catch(error: any) {
       console.error(error.message)
@@ -17,7 +18,7 @@ class ItemsRepo {
   async onAddItem(dto: IItem) {
     const newItemId = uuid.v4()
     try {
-      await queries.addItem(dto, items, newItemId)
+      await itemsQueries.addItem(dto, newItemId)
       return { id: newItemId, ...dto }
     } catch(error: any) {
       console.error(error.message)
@@ -26,7 +27,7 @@ class ItemsRepo {
 
   async onGetItemById(id: string) {
     try {
-      const { rows } = await queries.getItemById(id, items)
+      const { rows } = await commonQueries.getDataById(id, items)
       return rows[0]
     } catch(error: any) {
       console.error(error.message)
@@ -35,7 +36,7 @@ class ItemsRepo {
 
   async onRemoveItemById(id: string) {
     try {
-      return await queries.onRemoveItemById(id)
+      return await commonQueries.onRemoveItemById(id, items)
     } catch(error: any) {
       console.error(error.message)
     }
@@ -43,7 +44,7 @@ class ItemsRepo {
 
   async onRemoveAll() {
     try {
-      return await queries.onRemoveAll()
+      return await commonQueries.onRemoveAll(items)
     } catch(error: any) {
       console.error(error.message)
     }

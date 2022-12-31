@@ -1,13 +1,14 @@
 import { TABLES } from "../config"
 import * as uuid from 'uuid';
-import queries from "./queries"
+import authQueries from "./queries/authQueries"
+import commonQueries from "./queries/commonQueries";
 
 const { tokens } = TABLES
 class AuthRepo {
   async onSetTokens(tokens: { accessToken: string, refreshToken: string }, newUserId: string) {
     try {
       const tokensId = uuid.v4()
-      return await queries.onSetTokens(tokens, newUserId, tokensId)
+      return await authQueries.onSetTokens(tokens, newUserId, tokensId)
     } catch(error: any) {
       console.error(error.message)
     }
@@ -15,7 +16,7 @@ class AuthRepo {
 
   async onGetTokensByParam(paramKey: string, paramValue: string) {
     try {
-      const response =  await queries.onGetEntityByParam(paramKey, paramValue, tokens)
+      const response =  await commonQueries.onGetEntityByParam(paramKey, paramValue, tokens)
       if (response.rows.length) {
         return response.rows[0]
       }
@@ -27,7 +28,7 @@ class AuthRepo {
 
   async onRefreshToken(tokens: { accessToken: string, refreshToken: string }, userId: string) {
     try {
-      return await queries.onRefreshTokens(tokens, userId) 
+      return await authQueries.onRefreshTokens(tokens, userId) 
     } catch(error: any) {
       console.error(error.message)
     }

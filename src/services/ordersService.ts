@@ -1,5 +1,3 @@
-import UsersRepo from "../repo/usersRepo"
-import jwt from "jsonwebtoken"
 import { IOrders, JwtPayload } from "../types";
 import ordersRepo from "../repo/ordersRepo";
 import * as uuid from "uuid";

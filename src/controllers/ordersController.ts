@@ -1,10 +1,5 @@
 import { Request, Response } from "express";
-import { LOGIN_DTO_ERROR_RULES } from "../config";
-import AuthService from "../services/authService";
 import OrdersService from "../services/ordersService";
-import UsersService from "../services/usersService";
-import { IUser } from "../types";
-import { onValidateLoginDto } from "../utils/validators/onValidateLoginDto";
 
 class OrdersController {
   async onPostNewCeclaration(req: Request, res: Response) {
