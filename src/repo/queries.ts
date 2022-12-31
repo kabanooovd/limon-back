@@ -1,6 +1,6 @@
 import { TABLES } from "../config";
 import { pool } from "../db_config";
-import { IItem, IUser, TUserRole } from "../types";
+import { IItem, IOrders, IUser, TUserRole } from "../types";
 
 const { items } = TABLES
 
@@ -43,6 +43,11 @@ class Queries {
 
 
 
+
+
+
+
+
   async registrateUser(dto: IUser, tableName: string, newUserId: string, userRole: TUserRole) {
     const {email, userLogin, userPassword} = dto;
     return await pool.query(`INSERT INTO ${tableName} (id, email, userLogin, userPassword, userRole)
@@ -73,6 +78,38 @@ class Queries {
     const { accessToken, refreshToken } = tokens;
     return await pool.query(`UPDATE tokens SET refreshToken = '${refreshToken}', accessToken = '${accessToken}' WHERE userId = '${userId}'`)
   }
+
+
+
+
+
+  async onAddOrders(dto: IOrders) {
+    const {id, userId, itemId, Fio, rating, item_name, item_description, contact, region, city, street, postolIndex, house, flat, quantity, isAgreeWithConditions} = dto
+    return await pool.query(`INSERT INTO orders (id, userId, itemId, Fio, rating, item_name, item_description, contact, region, city, street, postolIndex, house, flat, quantity, isAgreeWithConditions)
+    VALUES (
+      '${id}', 
+      '${userId}', 
+      '${itemId}', 
+      '${Fio}', 
+      ${rating},
+      '${item_name}', 
+      '${item_description}', 
+      '${contact}', 
+      '${region}', 
+      '${city}', 
+      '${street}', 
+      '${postolIndex}', 
+      '${house}', 
+      '${flat}', 
+      '${quantity}', 
+      '${isAgreeWithConditions}'      
+      );`);
+    
+  }
+
+
+
+
 
 }
 

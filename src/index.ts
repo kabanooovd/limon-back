@@ -6,6 +6,7 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import authRouter from './routers/authRouter';
 import usersRouter from './routers/usersRouter';
+import ordersRouter from './routers/ordersRouter';
 
 const { BASE_HOST, FILE_STORAGE_DIR_NAME, ROOT_ROUTE, SWAGGER_ROOT_ROUTE } = config
 
@@ -37,6 +38,7 @@ app.use(express.static(FILE_STORAGE_DIR_NAME));
 app.use(`${ROOT_ROUTE}/`, itemsRouter);
 app.use(`${ROOT_ROUTE}/`, authRouter);
 app.use(`${ROOT_ROUTE}/`, usersRouter);
+app.use(`${ROOT_ROUTE}/`, ordersRouter);
 
 const start = async () => {
   pool.on("connect", () => {});

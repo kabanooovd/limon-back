@@ -23,6 +23,7 @@ export const TABLES = {
   items: 'items',
   users: 'users',
   tokens: 'tokens',
+  orders: 'orders',
 }
 
 export const ROUTES = {
@@ -33,6 +34,7 @@ export const ROUTES = {
   LOGOUT: "logout",
   UESRS: "users",
   REFRESH: "refresh",
+  ORDERS: "orders",
 }
 
 export const ITEMS_DTO_ERROR_RULES = [
