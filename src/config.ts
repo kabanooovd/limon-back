@@ -34,3 +34,16 @@ export const ROUTES = {
   UESRS: "users",
   REFRESH: "refresh",
 }
+
+export const ITEMS_DTO_ERROR_RULES = [
+  {field: "item_name", isRequied: true, maLenght: 20},
+  {field: "price", isRequied: true},
+  {field: "category", isRequied: true},
+  {field: "rating", isRequied: true},
+  {field: "item_description", isRequied: true, maLenght: 100},
+]
+
+export const LOGIN_DTO_ERROR_RULES = [
+  {field: "email", isRequied: true, maLenght: 50},
+  {field: "userPassword", isRequied: true, maLenght: 20},
+]

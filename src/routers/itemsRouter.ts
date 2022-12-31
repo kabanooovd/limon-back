@@ -20,7 +20,7 @@ const { ITEMS } = ROUTES
  *      200:
  *        description: A successful response
  */
-itemsRouter.get(`/${ITEMS}`, authMiddleware, ItemsController.onGetItems)
+itemsRouter.get(`/${ITEMS}`, ItemsController.onGetItems)
 
 /**
  * @swagger

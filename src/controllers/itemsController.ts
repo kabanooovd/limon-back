@@ -1,5 +1,7 @@
 import { Request, Response } from "express"
+import { ITEMS_DTO_ERROR_RULES } from "../config"
 import ItemsService from "../services/itemsService"
+import { onValidateItemsDto } from "../utils/validators/onValidateItemsDto"
 
 class ItemsController {
   async onGetItems(req: Request, res: Response) {
@@ -9,6 +11,12 @@ class ItemsController {
   }
 
   async onPostItem(req: Request, res: Response) {
+    // DTO data handling by rules from config
+    const errors = onValidateItemsDto(ITEMS_DTO_ERROR_RULES, req.body)
+    if (errors.length > 0) {
+      return res.status(400).json(errors)
+    }
+
     const filename: string | null = req.file ? req.file.filename : null;
     const dto: any = req.body
     const response = await ItemsService.onAddItem({...dto, item_image: filename})
