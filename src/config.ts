@@ -7,7 +7,7 @@ export const dbConnectionConfig = {
 }
 
 export const JWT_ACCESS_SECRET_KEY = "limon_access_secret_key";
-export const JWT_ACCESS_TOKEN_LIFETIME = "30m";
+export const JWT_ACCESS_TOKEN_LIFETIME = "1m";
 export const JWT_REFRESH_SECRET_KEY = "limon_refresh_secret_key";
 export const JWT_REFRESH_TOKEN_LIFETIME = "30d";
 
