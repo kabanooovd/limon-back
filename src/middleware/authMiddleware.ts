@@ -13,13 +13,12 @@ export const authMiddleware = (
     res.status(401).send("Not authorized");
     return;
   }
-  if (authorization.split(" ")[0] === "Basic") {
+  if (authorization.split(" ")[0] !== "Bearer") {
     res.status(401).send("Incorrect authorization");
     return;
   }
 
   const token = req.headers.authorization?.split(" ")[1]
-  console.log("==> ", token)
   try {
     if (authorization && token) {
       var decoded = jwt.verify(token, JWT_ACCESS_SECRET_KEY);

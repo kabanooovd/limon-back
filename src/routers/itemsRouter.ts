@@ -3,7 +3,6 @@ import ItemsController from "../controllers/itemsController";
 import multer from "multer"
 import { storage } from "../utils/onMulterStorage";
 import { ROUTES } from "../config";
-import { authMiddleware } from "../middleware/authMiddleware";
 
 const upload = multer({ storage })
 
@@ -20,7 +19,7 @@ const { ITEMS } = ROUTES
  *      200:
  *        description: A successful response
  */
-itemsRouter.get(`/${ITEMS}`, authMiddleware, ItemsController.onGetItems)
+itemsRouter.get(`/${ITEMS}`, ItemsController.onGetItems)
 
 /**
  * @swagger
