@@ -6,7 +6,7 @@ const ordersRouter = express.Router();
 
 const { ORDERS } = ROUTES
 
-ordersRouter.post(`/${ORDERS}`, OrdersController.onPostNewCeclaration)
+ordersRouter.post(`/${ORDERS}`, OrdersController.onPostNewDeclaration)
 ordersRouter.get(`/${ORDERS}`, OrdersController.onGetAllDeclarations)
 ordersRouter.get(`/${ORDERS}/:id`, OrdersController.onGetAllDeclarationById)
 ordersRouter.delete(`/${ORDERS}/all`, OrdersController.onRemoveAllDeclarations)

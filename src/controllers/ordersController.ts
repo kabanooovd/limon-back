@@ -1,12 +1,23 @@
 import { Request, Response } from "express";
 import OrdersService from "../services/ordersService";
 import commonQueries from "../repo/queries/commonQueries";
+import itemsService from "../services/itemsService";
 
 class OrdersController {
-  async onPostNewCeclaration(req: Request, res: Response) {
-    const dto = req.body;
+  async onPostNewDeclaration(req: Request, res: Response) {
+    const foundItem = await itemsService.onGetItemById(req.body.itemId)
+    if (!foundItem) {
+      return res.status(404).json(foundItem)
+    }
+    const dto = {
+      ...req.body,
+      rating: 3,
+      item_name: "string",
+      item_description: null,
+      created_date: new Date().toISOString(),
+      declaration_status: "created",
+    }
     const response = await OrdersService.onPostOrder(dto)
-    
     res.json(response)
     return
   }

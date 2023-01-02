@@ -16,6 +16,8 @@ export interface IOrders {
   house: string;
   flat : string | null;
   quantity: number;
+  declaration_status: string;
+  created_date: string;
   isAgreeWithConditions: boolean;
 }
 export interface IItem {

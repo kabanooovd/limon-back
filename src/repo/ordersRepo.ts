@@ -7,7 +7,9 @@ const { orders } = TABLES
 class OrdersRepo {
   async onCreateDeclaration(dto: IOrders) {
     try {
-      return await ordersQueries.onAddOrders(dto)
+      const data = await ordersQueries.onAddOrders(dto)
+      if (data) return dto
+      return null
     } catch(error: any) {
       console.error(error.message)
     }

@@ -1,14 +1,11 @@
-import { TABLES } from "../../config";
 import { pool } from "../../db_config";
-import { IItem, IOrders } from "../../types";
-
-const { orders } = TABLES
+import { IOrders } from "../../types";
 
 class OrdersQueries {
 
     async onAddOrders(dto: IOrders) {
-    const {id, userId, itemId, Fio, rating, item_name, item_description, contact, region, city, street, postolIndex, house, flat, quantity, isAgreeWithConditions} = dto
-    return await pool.query(`INSERT INTO orders (id, userId, itemId, Fio, rating, item_name, item_description, contact, region, city, street, postolIndex, house, flat, quantity, isAgreeWithConditions)
+    const {id, userId, itemId, Fio, rating, item_name, item_description, contact, region, city, street, postolIndex, house, flat, quantity, declaration_status, created_date, isAgreeWithConditions} = dto
+    return await pool.query(`INSERT INTO orders (id, userId, itemId, Fio, rating, item_name, item_description, contact, region, city, street, postolIndex, house, flat, quantity, declaration_status, created_date, isAgreeWithConditions)
     VALUES (
       '${id}', 
       '${userId}', 
@@ -24,7 +21,9 @@ class OrdersQueries {
       '${postolIndex}', 
       '${house}', 
       '${flat}', 
-      '${quantity}', 
+      '${quantity}',
+      '${declaration_status}',
+      '${created_date}',
       '${isAgreeWithConditions}'      
       );`
     );
