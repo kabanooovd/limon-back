@@ -7,6 +7,7 @@ import swaggerUi from "swagger-ui-express";
 import authRouter from './routers/authRouter';
 import usersRouter from './routers/usersRouter';
 import ordersRouter from './routers/ordersRouter';
+import cors from "cors";
 
 const { BASE_HOST, FILE_STORAGE_DIR_NAME, ROOT_ROUTE, SWAGGER_ROOT_ROUTE } = config
 
@@ -29,6 +30,8 @@ const swaggerOptions = {
   // ['.routes/*.js']
   apis: ["./src/routers/itemsRouter.ts"]
 };
+
+app.use(cors());
 
 app.use(SWAGGER_ROOT_ROUTE, swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerOptions)));
 app.use(express.json());
